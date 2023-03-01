@@ -15,10 +15,13 @@ ENV LC_ALL=en_US.UTF-8
 
 RUN set -ex && \
     echo $ARCH > /etc/apk/arch && \
+    
     echo "Installing dependencies..." && \
     apk add --no-cache xvfb freetype supervisor && \
     export repo_mirror=$(head -1 /etc/apk/repositories | sed -n 's/\/alpine.*$//p') && \
     apk add --no-cache -X $repo_mirror/alpine/edge/community wine && \
+    apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing winetricks \
+    winetricks -q mdac28 \
     echo "Initializing wine..." && \
     wineboot && \
     wineserver -w && \
