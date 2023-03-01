@@ -24,8 +24,8 @@ RUN set -ex && \
     wineboot && \
     wineserver -w && \
     echo "Install winetricks & mdac28..." && \
-    apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing --allow-untrusted winetricks \
-    winetricks -q mdac28 \
+    apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing --allow-untrusted winetricks && \
+    winetricks -q mdac28 && \
     echo "Clean Up..." && \
     rm -rf /var/cache/apk/*
 
